@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { DISCORD_LINK } from "../components/Navbar";
 
-
 /* ─── Static metadata ─── */
 
 const COIN_META = [
@@ -314,16 +313,17 @@ const Hero = () => {
           className="flex flex-col items-start"
         >
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.12] mb-6 text-white tracking-tight">
-            Beyond basics.
+            Learn Trading
             <br />
-            Trade crypto&nbsp;&amp;
+            From Scratch &nbsp;&amp;
             <br />
-            assets with <span className="text-emerald-400">TMW</span>.
+            Inside<span className="text-emerald-400">TMW</span> Discord.
           </h1>
 
           <p className="text-gray-400 md:bg-[#0c0f1a]/40 md:backdrop-blur-md text-lg max-w-md leading-relaxed mb-10">
-            Join 5,000+ traders mastering the markets from scratch. Access our
-            premium structured Discord classroom — completely free.
+            Join the free TMW Discord and start learning trading step by step
+            through free A to Z courses, beginner lessons, risk management,
+            trading psychology, and market structure education.
           </p>
 
           {/* Social row */}
@@ -473,8 +473,6 @@ const Hero = () => {
             </div>
           </motion.div>
         </motion.div>
-
-
       </div>
 
       {/* Scroll indicator */}

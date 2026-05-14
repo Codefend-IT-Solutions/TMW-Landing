@@ -1,4 +1,5 @@
-import React from 'react'
+  import React from 'react'
+import learningPathImg from '../assets/learning-path.jpeg'
 
 const roadmap = [
   {
@@ -82,66 +83,105 @@ const roadmap = [
 
 const CourseRoadmap = () => {
   return (
-    <section id="roadmap" className="py-20 px-4 relative">
+    <section id="roadmap" className="py-24 px-4 relative overflow-hidden bg-[#030712]">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+      
+      {/* Background glow */}
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Label */}
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-6">
           <span className="glass-emerald text-emerald-400 text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full">
-            Course Roadmap
+            Curriculum
           </span>
         </div>
 
-        <h2 className="font-display font-bold text-3xl sm:text-4xl text-center text-white mb-4">
-          Your Trading{' '}
-          <span className="text-gradient">Learning Path</span>
+        <h2 className="font-display font-bold text-4xl sm:text-5xl text-center text-white mb-6">
+          Your Trading <span className="text-gradient">Learning Path</span>
         </h2>
-        <p className="text-gray-400 text-center text-lg max-w-2xl mx-auto mb-14">
+        <p className="text-gray-400 text-center text-lg max-w-2xl mx-auto mb-16">
           A clear, step-by-step curriculum designed to build your skills progressively — no jumping ahead, no confusion.
         </p>
 
-        {/* Roadmap steps */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/60 via-emerald-500/30 to-transparent hidden sm:block" />
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+          {/* Left: Roadmap steps */}
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/60 via-emerald-500/30 to-transparent hidden sm:block" />
 
-          <div className="space-y-4">
-            {roadmap.map((step, index) => (
-              <div
-                key={step.id}
-                className="relative flex gap-4 sm:gap-6 group"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {/* Step number + icon */}
-                <div className="flex-shrink-0 relative z-10">
-                  <div className="w-16 h-16 rounded-2xl glass-emerald flex items-center justify-center text-emerald-400 group-hover:glow-emerald-sm transition-all duration-300 group-hover:scale-105">
-                    {step.icon}
+            <div className="space-y-4">
+              {roadmap.map((step, index) => (
+                <div
+                  key={step.id}
+                  className="relative flex gap-4 sm:gap-6 group"
+                >
+                  {/* Step number + icon */}
+                  <div className="flex-shrink-0 relative z-10">
+                    <div className="w-16 h-16 rounded-2xl glass-emerald flex items-center justify-center text-emerald-400 group-hover:glow-emerald-sm transition-all duration-300 group-hover:scale-105">
+                      {step.icon}
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 text-white text-xs font-bold flex items-center justify-center">
+                      {step.id}
+                    </div>
                   </div>
-                  <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 text-white text-xs font-bold flex items-center justify-center">
-                    {step.id}
+
+                  {/* Content */}
+                  <div className="flex-1 glass rounded-2xl p-4 sm:p-5 group-hover:glass-emerald transition-all duration-300">
+                    <div className="flex flex-wrap items-center gap-3 mb-2">
+                      <h3 className="font-display font-bold text-lg text-white">{step.title}</h3>
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        {step.tag}
+                      </span>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* Content */}
-                <div className="flex-1 glass rounded-2xl p-4 sm:p-5 group-hover:glass-emerald transition-all duration-300">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="font-display font-bold text-lg text-white">{step.title}</h3>
-                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                      {step.tag}
-                    </span>
+          {/* Right: Discord Visual Reference */}
+          <div className="sticky top-32">
+            <div className="relative group">
+              {/* Decorative frame */}
+              <div className="absolute -inset-1 bg-gradient-to-b from-emerald-500/20 to-transparent rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000" />
+              
+              <div className="relative glass rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+                <div className="p-4 bg-white/5 border-b border-white/5 flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
                   </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                  <span className="text-[10px] text-gray-500 font-medium tracking-widest uppercase">Discord Classroom</span>
                 </div>
+                
+                <img 
+                  src={learningPathImg} 
+                  alt="Discord Learning Path" 
+                  className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                />
               </div>
-            ))}
+
+              {/* Floating Badge */}
+              <div className="absolute -top-6 -right-6 bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                8+ MODULES
+              </div>
+            </div>
+
+            <div className="mt-8 p-6 glass rounded-2xl border-l-4 border-emerald-500">
+              <p className="text-gray-400 text-sm italic leading-relaxed">
+                "Our Discord is structured exactly like this image. Each channel represents a step in your journey, from absolute beginner to advanced trader."
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Bottom note */}
-        <div className="mt-10 text-center">
-          <p className="text-gray-600 text-sm">
-            ✦ All 7 modules available immediately upon joining — completely free
+        <div className="mt-16 text-center">
+          <p className="text-gray-500 text-sm font-medium">
+            ✦ All modules available immediately upon joining — 100% Free Forever
           </p>
         </div>
       </div>

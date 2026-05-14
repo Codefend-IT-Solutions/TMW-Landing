@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Logo from '../assets/logo.png'
 
 const DISCORD_LINK = 'https://discord.gg/RpZdhq2Tn5' 
 
@@ -43,9 +44,7 @@ const Navbar = () => {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center glow-emerald-sm flex-shrink-0">
-            <DiscordIcon className="w-5 h-5 text-white" />
-          </div>
+          <img src={Logo} alt="Logo" className="w-10 h-10 rounded-lg flex items-center justify-center glow-emerald-sm flex-shrink-0" />
           <span className="font-display font-bold text-lg tracking-tight">
             <span className="text-gradient">TMW</span>
             <span className="text-gray-300"> Discord</span>

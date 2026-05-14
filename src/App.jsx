@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./pages/Hero";
 import ContextSection from "./pages/ContextSection";
 import MentorSection from "./pages/MentorSection";
+import Testimonials from "./pages/Testimonials";
 
-import MarketPerformance from "./components/MarketPerformance";
 import CourseRoadmap from "./pages/CourseRoadmap";
 import ComparisonSection from "./pages/ComparisonSection";
 import FinalCTA from "./pages/FinalCTA";
@@ -18,7 +18,8 @@ function App() {
         <ContextSection />
         <MentorSection />
 
-        <MarketPerformance />
+        <Testimonials />
+
         <CourseRoadmap />
         <ComparisonSection />
         <FinalCTA />

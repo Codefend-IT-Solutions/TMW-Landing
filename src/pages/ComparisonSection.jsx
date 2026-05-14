@@ -51,7 +51,7 @@ const ComparisonSection = () => {
                 </svg>
               </div>
               <div>
-                <h3 className="font-display font-bold text-xl text-white">This IS For You</h3>
+                <h3 className="font-display font-bold text-xl text-white">This is For You</h3>
                 <p className="text-emerald-400 text-xs font-medium">If you match these ↓</p>
               </div>
             </div>

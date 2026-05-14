@@ -11,7 +11,6 @@ const MentorSection = () => {
 
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
           {/* Left: Image with stylized frame */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -23,7 +22,7 @@ const MentorSection = () => {
             {/* Decorative elements behind image */}
             <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-emerald-500/30 rounded-tl-3xl" />
             <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-emerald-500/30 rounded-br-3xl" />
-            
+
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
               <img
                 src={instructorImg}
@@ -32,28 +31,6 @@ const MentorSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-40" />
             </div>
-
-            {/* Floating Achievement Card */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -right-8 z-20 bg-[#0c0f1a]/90 backdrop-blur-xl border border-emerald-500/20 p-6 rounded-2xl shadow-2xl max-w-[240px]"
-            >
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-white font-bold text-lg">94%</div>
-                  <div className="text-gray-400 text-[10px] uppercase tracking-wider">Success Rate</div>
-                </div>
-              </div>
-              <p className="text-gray-500 text-xs leading-relaxed">
-                Proven strategies refined over 7+ years of institutional trading.
-              </p>
-            </motion.div>
           </motion.div>
 
           {/* Right: Content */}
@@ -75,23 +52,31 @@ const MentorSection = () => {
 
             <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
               <p>
-                Trading isn't about complex indicators or guessing games. It's about understanding 
-                <span className="text-white font-medium"> market psychology, liquidity, and risk management.</span>
+                Haris Khan, founder of TMW, has more than{" "}
+                <span className="text-white font-semibold">10 years</span> of
+                experience in financial market education and has helped over{" "}
+                <span className="text-white font-semibold">75,000</span>{" "}
+                students and learners understand trading in a simple way.
               </p>
               <p>
-                My mission with TMW Discord is to pull back the curtain on the institutional side of trading. 
-                I don't just provide signals; I teach you the "why" behind every move, empowering you to 
-                become a truly independent trader.
+                Inside TMW Discord, beginners can learn chart reading, market
+                structure, risk management, and trading psychology step by step.
+                The purpose is to help people build a strong learning foundation
+                before making trading decisions. All content is only for
+                education and does not guarantee any results or provide
+                financial advice.
               </p>
             </div>
 
             <div className="mt-12 grid grid-cols-2 gap-8">
               <div>
-                <div className="text-white font-bold text-3xl mb-1">5,000+</div>
+                <div className="text-white font-bold text-3xl mb-1">75,000+</div>
                 <div className="text-gray-500 text-sm">Students Mentored</div>
               </div>
               <div>
-                <div className="text-white font-bold text-3xl mb-1">7+ Yrs</div>
+                <div className="text-white font-bold text-3xl mb-1">
+                  10+ Yrs
+                </div>
                 <div className="text-gray-500 text-sm">Trading Experience</div>
               </div>
             </div>
@@ -99,17 +84,26 @@ const MentorSection = () => {
             <div className="mt-12 flex items-center gap-6">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-[#030712] bg-gray-800 overflow-hidden">
-                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Student" />
+                  <div
+                    key={i}
+                    className="w-10 h-10 rounded-full border-2 border-[#030712] bg-gray-800 overflow-hidden"
+                  >
+                    <img
+                      src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                      alt="Student"
+                    />
                   </div>
                 ))}
               </div>
               <div className="text-sm text-gray-500">
-                Joined by <span className="text-white font-semibold">200+ new traders</span> this month
+                Joined by{" "}
+                <span className="text-white font-semibold">
+                  200+ new traders
+                </span>{" "}
+                this month
               </div>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
