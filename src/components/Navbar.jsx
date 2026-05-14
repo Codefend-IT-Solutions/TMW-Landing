@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       {/* Main bar */}
-      <div className="max-w-6xl mx-auto glass rounded-2xl px-6 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto glass backdrop-blur-xl rounded-2xl px-6 py-3 flex items-center justify-between">
 
         {/* Logo */}
         <div 
