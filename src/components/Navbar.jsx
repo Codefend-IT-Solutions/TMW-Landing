@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Logo from '../assets/logo.png'
+import Logo from '../assets/LOGO.png'
 
 const DISCORD_LINK = 'https://discord.gg/RpZdhq2Tn5' 
 
