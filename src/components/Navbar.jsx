@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const DISCORD_LINK = 'https://discord.gg/ayFStChNwU' 
+const DISCORD_LINK = 'https://discord.gg/RpZdhq2Tn5' 
 
 const DiscordIcon = ({ className }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
