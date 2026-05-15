@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Logo from '../assets/LOGO.png'
 import discordImg from '../assets/discord.webp'
 
-const DISCORD_LINK = 'https://discord.gg/RpZdhq2Tn5' 
+const DISCORD_LINK = 'https://discord.gg/9VZXvS586r' 
 
 const DiscordIcon = ({ className }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
