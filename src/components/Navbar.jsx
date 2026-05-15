@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Logo from '../assets/LOGO.png'
+import discordImg from '../assets/discord.webp'
 
 const DISCORD_LINK = 'https://discord.gg/RpZdhq2Tn5' 
 
@@ -75,7 +76,7 @@ const Navbar = () => {
             id="nav-join-btn"
             className="btn-emerald text-white font-semibold text-sm px-5 py-2.5 rounded-xl hidden sm:flex items-center gap-2"
           >
-            <DiscordIcon className="w-4 h-4" />
+            <img src={discordImg} alt="discord" className="w-6 h-6" />
             Join Free
           </a>
 
@@ -105,7 +106,7 @@ const Navbar = () => {
       {/* Mobile dropdown menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden max-w-6xl mx-auto mt-2 glass rounded-2xl overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`md:hidden max-w-6xl mx-auto mt-2 glass backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300 ease-in-out ${
           menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
         }`}
       >
