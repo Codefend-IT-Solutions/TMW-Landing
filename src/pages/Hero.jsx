@@ -304,174 +304,30 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center px-4 pt-24 pb-16 overflow-hidden bg-[#030712]">
       <Ribbons />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
-        {/* ── Left column ── */}
+      <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col items-center text-center">
+        {/* ── Content ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-start"
+          className="flex flex-col items-center"
         >
-          <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.12] mb-6 text-white tracking-tight">
+          <h1 className="font-display font-bold text-6xl sm:text-7xl lg:text-8xl leading-[1.1] mb-8 text-white tracking-tight">
             Learn Trading
             <br />
             From Scratch &nbsp;&amp;
             <br />
-            Inside<span className="text-emerald-400">TMW</span> Discord.
+            Inside <span className="text-emerald-400">TMW</span> Discord.
           </h1>
 
-          <p className="text-gray-400 md:bg-[#0c0f1a]/40 md:backdrop-blur-md text-lg max-w-md leading-relaxed mb-10">
+          <p className="text-gray-400 backdrop-blur-xl text-lg sm:text-xl max-w-2xl leading-relaxed mb-12">
             Join the free TMW Discord and start learning trading step by step
             through free A to Z courses, beginner lessons, risk management,
             trading psychology, and market structure education.
           </p>
 
           {/* Social row */}
-          <div className="flex flex-wrap items-start gap-10"></div>
-        </motion.div>
-
-        {/* ── Right column: two stacked cards + Popular card side by side ── */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:flex gap-4 items-stretch"
-          style={{ height: 460 }}
-        >
-          {/* Left stack — two cards that together fill the full height */}
-          <div className="flex flex-col gap-4 w-64 h-full">
-            {/* BTC card */}
-            <motion.div
-              className="bg-[#0c0f1a]/80 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-5 shadow-2xl flex flex-col justify-between flex-1"
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-gray-300 text-lg font-semibold">
-                  Bitcoin
-                </span>
-                <Sparkline up={!btcData || btcData.change24h >= 0} />
-              </div>
-              <div>
-                {btcData ? (
-                  <>
-                    <div
-                      className={`text-sm mb-1 font-medium ${btcData.change24h >= 0 ? "text-emerald-400" : "text-red-400"}`}
-                    >
-                      BTC {btcData.change24h >= 0 ? "+" : ""}
-                      {btcData.change24h.toFixed(2)}%
-                    </div>
-                    <div className="text-white font-bold text-3xl">
-                      {fmt(btcData.price)}
-                    </div>
-                  </>
-                ) : (
-                  <div className="h-8 bg-white/5 rounded animate-pulse" />
-                )}
-              </div>
-              <div className="text-gray-600 text-xs mt-3 hover:text-gray-400 cursor-pointer transition-colors">
-                View →
-              </div>
-            </motion.div>
-
-            {/* ETH card */}
-            <motion.div
-              className="bg-[#0c0f1a]/80 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-5 shadow-2xl flex flex-col justify-between flex-1"
-              animate={{ y: [4, -4, 4] }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            >
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-gray-300 text-lg font-semibold">
-                  Ethereum
-                </span>
-                <Sparkline up={!ethData || ethData.change24h >= 0} />
-              </div>
-              <div>
-                {ethData ? (
-                  <>
-                    <div
-                      className={`text-sm mb-1 font-medium ${ethData.change24h >= 0 ? "text-emerald-400" : "text-red-400"}`}
-                    >
-                      ETH {ethData.change24h >= 0 ? "+" : ""}
-                      {ethData.change24h.toFixed(2)}%
-                    </div>
-                    <div className="text-white font-bold text-3xl">
-                      {fmt(ethData.price)}
-                    </div>
-                  </>
-                ) : (
-                  <div className="h-8 bg-white/5 rounded animate-pulse" />
-                )}
-              </div>
-              <div className="text-gray-600 text-xs mt-3 hover:text-gray-400 cursor-pointer transition-colors">
-                View →
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Popular card — same height as two stacked cards */}
-          <motion.div
-            className="bg-[#0c0f1a]/80 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 shadow-2xl flex flex-col w-72"
-            style={{ height: "100%" }}
-            animate={{ y: [-6, 6, -6] }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
-          >
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="text-gray-200 font-semibold">Popular</h3>
-              {!connected && Object.keys(prices).length === 0 ? (
-                <span className="flex items-center gap-1 text-[10px] text-gray-500 font-medium">
-                  CONNECTING...
-                </span>
-              ) : (
-                <span className="flex items-center gap-1 text-[10px] text-emerald-500 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  LIVE
-                </span>
-              )}
-            </div>
-
-            <div className="flex-1 flex flex-col justify-between space-y-0">
-              {Object.keys(prices).length === 0
-                ? Array.from({ length: 7 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-between py-1.5"
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-white/5 animate-pulse" />
-                        <div className="w-8 h-3 bg-white/5 rounded animate-pulse" />
-                      </div>
-                      <div className="w-16 h-3 bg-white/5 rounded animate-pulse" />
-                    </div>
-                  ))
-                : COIN_META.map((meta) => (
-                    <div key={meta.id} className="py-1.5">
-                      <CoinRow meta={meta} data={prices[meta.id]} />
-                    </div>
-                  ))}
-            </div>
-
-            <div className="pt-4 mt-3 border-t border-white/[0.06]">
-              <a
-                href={DISCORD_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-gray-500 hover:text-emerald-400 transition-colors"
-              >
-                Explore over 800 assets →
-              </a>
-            </div>
-          </motion.div>
+          <div className="flex flex-wrap items-center justify-center gap-10"></div>
         </motion.div>
       </div>
 

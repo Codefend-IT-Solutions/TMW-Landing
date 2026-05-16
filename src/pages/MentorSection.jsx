@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import instructorImg from "../assets/instructor.jpg";
+import instructorImg from "../assets/main.jpeg";
 
 const MentorSection = () => {
   return (
