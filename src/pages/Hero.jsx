@@ -315,7 +315,7 @@ const Hero = () => {
           <h1 className="font-display font-bold text-6xl sm:text-7xl lg:text-8xl leading-[1.1] mb-8 text-white tracking-tight">
             Learn Trading
             <br />
-            From Scratch &nbsp;&amp;
+            From A to Z&nbsp;&amp;
             <br />
             Inside <span className="text-emerald-400">TMW</span> Discord.
           </h1>
