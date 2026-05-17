@@ -60,9 +60,12 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     // 2. Trigger discord_redirect_click GTM event
     window.dataLayer.push({ event: "discord_redirect_click" });
 
-    // 3. Redirect to DISCORD_LINK
-    window.location.href = DISCORD_LINK;
     onClose();
+
+    // 3. Redirect to DISCORD_LINK after 100ms to allow GTM to capture the events
+    setTimeout(() => {
+      window.location.href = DISCORD_LINK;
+    }, 100);
   };
 
   return (
