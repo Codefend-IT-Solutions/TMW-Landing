@@ -320,7 +320,7 @@ const Hero = () => {
             Inside <span className="text-emerald-400">TMW</span> Discord.
           </h1>
 
-          <p className="text-gray-400 backdrop-blur-xl text-lg sm:text-xl max-w-2xl leading-relaxed mb-12">
+          <p className="text-gray-400 bg-black/70 backdrop-blur-xl rounded-2xl p-4 text-lg sm:text-xl max-w-2xl leading-relaxed mb-12">
             Join the free TMW Discord and start learning trading step by step
             through free A to Z courses, beginner lessons, risk management,
             trading psychology, and market structure education.
