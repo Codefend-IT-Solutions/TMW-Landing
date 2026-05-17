@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Logo from '../assets/LOGO.png'
 import discordImg from '../assets/discord.webp'
 
-const DISCORD_LINK = 'https://discord.gg/9VZXvS586r' 
+import { DISCORD_LINK } from '../constants'
 
 const DiscordIcon = ({ className }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -18,7 +18,7 @@ const navLinks = [
   { label: 'Join', href: '#join' },
 ]
 
-const Navbar = () => {
+const Navbar = ({ onJoinClick }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   // Close menu on scroll
@@ -69,16 +69,14 @@ const Navbar = () => {
         {/* Right side: CTA + hamburger */}
         <div className="flex items-center gap-3">
           {/* Desktop CTA */}
-          <a
-            href={DISCORD_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onJoinClick}
             id="nav-join-btn"
             className="btn-emerald text-white font-semibold text-sm px-5 py-2.5 rounded-xl hidden sm:flex items-center gap-2"
           >
             <img src={discordImg} alt="discord" className="w-6 h-6" />
             Join Free
-          </a>
+          </button>
 
           {/* Hamburger — mobile only */}
           <button
@@ -123,17 +121,17 @@ const Navbar = () => {
           ))}
 
           {/* Mobile CTA */}
-          <a
-            href={DISCORD_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             id="mobile-join-btn"
-            onClick={() => setMenuOpen(false)}
-            className="btn-emerald text-white font-semibold text-sm px-5 py-3 rounded-xl flex items-center justify-center gap-2 mt-2"
+            onClick={() => {
+              setMenuOpen(false)
+              onJoinClick()
+            }}
+            className="btn-emerald text-white font-semibold text-sm px-5 py-3 rounded-xl flex items-center justify-center gap-2 mt-2 w-full"
           >
             <DiscordIcon className="w-4 h-4" />
             Join Free Discord
-          </a>
+          </button>
         </div>
       </div>
     </nav>
@@ -141,4 +139,4 @@ const Navbar = () => {
 }
 
 export default Navbar
-export { DISCORD_LINK }
+export { DISCORD_LINK } from '../constants'

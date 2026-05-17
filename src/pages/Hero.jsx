@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { DISCORD_LINK } from "../components/Navbar";
+import { DISCORD_LINK } from "../constants";
 
 /* ─── Static metadata ─── */
 

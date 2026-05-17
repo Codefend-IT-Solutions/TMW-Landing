@@ -1,8 +1,8 @@
 import React from "react";
-import { DISCORD_LINK } from "../components/Navbar";
+import { DISCORD_LINK } from "../constants";
 import discordImg from '../assets/discord.webp'
 
-const FinalCTA = () => {
+const FinalCTA = ({ onJoinClick }) => {
   return (
     <section id="join" className="py-24 px-4 relative overflow-hidden">
       {/* Top divider */}
@@ -36,16 +36,14 @@ const FinalCTA = () => {
 
         {/* CTA Button */}
         <div className="flex flex-col items-center gap-4">
-          <a
-            href={DISCORD_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onJoinClick}
             id="final-join-btn"
-            className="btn-emerald text-white font-bold text-xl px-12 py-5 rounded-2xl flex items-center gap-4 glow-emerald"
+            className="btn-emerald text-white font-bold text-xl px-12 py-5 rounded-2xl flex items-center gap-4 glow-emerald animate-pulse-slow"
           >
            <img src={discordImg} alt="discord" className="w-10 h-10" />
             Join Free Discord
-          </a>
+          </button>
 
           {/* Trust signals */}
           <div className="flex flex-wrap justify-center items-center gap-4 text-gray-500 text-sm">
