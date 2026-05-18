@@ -12,7 +12,7 @@ const DiscordIcon = ({ className }) => (
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Performance", href: "#performance" },
+  { label: "Performance", href: "#testimonials" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Who Is It For", href: "#who-is-this-for" },
   { label: "Join", href: "#join" },
