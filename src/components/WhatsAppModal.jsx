@@ -68,7 +68,7 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     }, 100);
   };
 
-  return (
+        return (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

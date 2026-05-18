@@ -24,11 +24,11 @@ function App() {
     <div className="min-h-screen bg-[#030712] text-white overflow-x-hidden">
       <Navbar onJoinClick={handleOpenModal} />
       <main>
-        <Hero />
+        <Hero onJoinClick={handleOpenModal} />
         <ContextSection />
         <MentorSection />
         <Testimonials />
-        <CourseRoadmap />
+        <CourseRoadmap onJoinClick={handleOpenModal} />
         <ComparisonSection />
         <FinalCTA onJoinClick={handleOpenModal} />
       </main>

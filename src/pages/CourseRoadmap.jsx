@@ -81,7 +81,7 @@ const roadmap = [
   },
 ]
 
-const CourseRoadmap = () => {
+const CourseRoadmap = ({ onJoinClick }) => {
   return (
     <section id="roadmap" className="py-24 px-4 relative overflow-hidden bg-[#030712]">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
@@ -174,6 +174,13 @@ const CourseRoadmap = () => {
               <p className="text-gray-400 text-sm italic leading-relaxed">
                 "Our Discord is structured exactly like this image. Each channel represents a step in your journey, from absolute beginner to advanced trader."
               </p>
+
+              <button
+                onClick={onJoinClick}
+                className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 px-8 rounded-xl text-lg transition-all duration-200 mt-6 shadow-lg shadow-emerald-500/10"
+              >
+                Join Now
+              </button>
             </div>
           </div>
         </div>

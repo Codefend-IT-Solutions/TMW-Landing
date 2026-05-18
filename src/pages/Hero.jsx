@@ -293,7 +293,7 @@ const CoinRow = ({ meta, data }) => {
 };
 
 /* ═══════════════════════════════════ HERO ═══════════════════════════════════ */
-const Hero = () => {
+const Hero = ({ onJoinClick }) => {
   const { prices, connected } = useLivePrices();
 
   /* pick BTC & ETH for the two small side cards */
@@ -312,12 +312,12 @@ const Hero = () => {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center"
         >
-          <h1 className="font-display font-bold text-6xl sm:text-7xl lg:text-8xl leading-[1.1] mb-8 text-white tracking-tight">
+          <h1 className="font-display font-bold text-5xl sm:text-5xl lg:text-8xl leading-[1.1] mb-8 text-white tracking-tight">
             Learn Trading
             <br />
-            From A to Z&nbsp;&amp;
+            From A to Z For Free
             <br />
-            Inside <span className="text-emerald-400">TMW</span> Discord.
+            &amp; Inside <span className="text-emerald-400">TMW</span>
           </h1>
 
           <p className="text-gray-400 bg-black/70 backdrop-blur-xl rounded-2xl p-4 text-lg sm:text-xl max-w-2xl leading-relaxed mb-12">
@@ -325,6 +325,13 @@ const Hero = () => {
             through free A to Z courses, beginner lessons, risk management,
             trading psychology, and market structure education.
           </p>
+
+          <button
+            onClick={onJoinClick}
+            className="w-full sm:hidden bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl text-lg text-center transition-all duration-200 mb-8 shadow-lg shadow-emerald-500/20"
+          >
+            Join Now
+          </button>
 
           {/* Social row */}
           <div className="flex flex-wrap items-center justify-center gap-10"></div>
