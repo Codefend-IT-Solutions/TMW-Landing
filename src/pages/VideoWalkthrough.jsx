@@ -24,12 +24,12 @@ const VideoWalkthrough = () => {
           {/* Subtle green ambient hover glow */}
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
           
-          <video
-            className="w-full h-full object-cover"
-            src="https://drive.google.com/uc?export=download&id=1fo45-7J4F0L-4pi0P4Vct-3XsoWf6heb"
-            controls
-            preload="metadata"
-            playsInline
+          <iframe
+            className="w-full h-full"
+            src="https://drive.google.com/file/d/1fo45-7J4F0L-4pi0P4Vct-3XsoWf6heb/preview"
+            allow="autoplay"
+            allowFullScreen
+            title="Discord Walkthrough Video"
           />
         </div>
       </motion.div>
