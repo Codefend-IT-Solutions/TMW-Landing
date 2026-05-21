@@ -41,5 +41,4 @@ desktop.ini
 # Vite
 *.timestamp-*
 
-# Large media files
-src/assets/video.mp4
+
