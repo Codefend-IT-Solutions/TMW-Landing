@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import video from "../assets/video.mp4";
 
 // ─── Inline SVG Icons ──────────────────────────────────────────────────────────
 const PlayIcon = () => (
@@ -178,7 +177,7 @@ const VideoWalkthrough = () => {
           <video
             ref={videoRef}
             className="w-full h-full object-contain"
-            src={video}
+            src="https://docs.google.com/uc?export=download&confirm=t&id=1fo45-7J4F0L-4pi0P4Vct-3XsoWf6heb"
             playsInline
             preload="metadata"
             onTimeUpdate={() => setCurrentTime(videoRef.current?.currentTime ?? 0)}
