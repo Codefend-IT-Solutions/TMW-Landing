@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./pages/Hero";
+import VideoWalkthrough from "./pages/VideoWalkthrough";
 import ContextSection from "./pages/ContextSection";
 import MentorSection from "./pages/MentorSection";
 import Testimonials from "./pages/Testimonials";
@@ -25,6 +26,7 @@ function App() {
       <Navbar onJoinClick={handleOpenModal} />
       <main>
         <Hero onJoinClick={handleOpenModal} />
+        <VideoWalkthrough />
         <ContextSection />
         <MentorSection />
         <Testimonials />
