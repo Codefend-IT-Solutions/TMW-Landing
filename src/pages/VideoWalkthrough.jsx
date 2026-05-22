@@ -30,7 +30,7 @@ const VideoWalkthrough = () => {
           {/* Streamable embed */}
           <iframe
             className="absolute inset-0 w-full h-full border-0 z-0"
-            src="https://streamable.com/e/ux8w8u"
+            src="https://firebasestorage.googleapis.com/v0/b/cell-it-dd264.appspot.com/o/videos%2Fdiscord%20joinning_Final.mp4?alt=media&token=84c74a61-bc25-4331-886c-499236aaf152"
             allow="fullscreen; autoplay; encrypted-media"
             allowFullScreen
             title="Discord Walkthrough Video"
