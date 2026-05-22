@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-// 10mb video 
-import video from "../assets/video.mp4";
+
 
 const VideoWalkthrough = () => {
+  const videoUrl = "https://hhwwmxnscvrasxxmawtg.supabase.co/storage/v1/object/public/tmw-videos/discord1%20joinning_Final.mp4";
+
   return (
     <section className="w-full max-w-5xl mx-auto px-4 mb-20">
       <motion.div
@@ -25,21 +26,18 @@ const VideoWalkthrough = () => {
         </div>
 
         {/* Player shell */}
-        <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl shadow-emerald-500/10 group">
+        <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl shadow-emerald-500/10 group">
           {/* Emerald ambient glow on hover */}
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
 
-          {/* Streamable embed */}
+          {/* Google Drive Video Embed */}
           <iframe
             className="absolute inset-0 w-full h-full border-0 z-0"
-            src={video}
+            src={videoUrl}
             allow="fullscreen; autoplay; encrypted-media"
             allowFullScreen
             title="Discord Walkthrough Video"
           />
-
-          {/* Shield: blocks the Streamable logo in the top-left corner */}
-          <div className="absolute top-0 left-0 w-24 h-14 bg-transparent z-10 pointer-events-auto" />
         </div>
       </motion.div>
     </section>

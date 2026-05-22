@@ -41,4 +41,7 @@ desktop.ini
 # Vite
 *.timestamp-*
 
+# Videos
+*.mp4
+
 
