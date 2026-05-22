@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 
 const VideoWalkthrough = () => {
-  const videoUrl = "https://pub-e5ff8a11db95486ca5b0c0b01d8f9115.r2.dev/wondertrip-video.mp4";
+  const videoUrl = "https://hhwwmxnscvrasxxmawtg.supabase.co/storage/v1/object/public/tmw-videos/discord1%20joinning_Final.mp4";
 
   return (
     <section className="w-full max-w-5xl mx-auto px-4 mb-20">
