@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+// 10mb video 
 import video from "../assets/video.mp4";
 
 const VideoWalkthrough = () => {
