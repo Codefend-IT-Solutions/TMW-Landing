@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DISCORD_LINK, GOOGLE_SHEET_URL } from "../constants";
+import { DISCORD_LINK, API_BASE_URL } from "../constants";
 
 // ─── Session-level dedup key ───
 // Prevents the same browser tab/session from POSTing to the Google Sheet
@@ -71,10 +71,11 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     window.dataLayer.push({ event: "whatsapp_form_submit" });
 
     try {
-      // 2. Single POST to Google Sheet — this is the ONLY fetch() in the entire app
-      await fetch(GOOGLE_SHEET_URL, {
+      // 2. POST to our own Express server — which saves to MongoDB first,
+      //    then forwards to Google Sheets. We now own the endpoint so
+      //    proper CORS applies (no more no-cors opacity).
+      await fetch(`${API_BASE_URL}/api/submit-lead`, {
         method: "POST",
-        mode: "no-cors", // Google Apps Script redirects usually cause CORS, no-cors ensures execution succeeds without CORS error blocking code
         headers: {
           "Content-Type": "application/json",
         },
