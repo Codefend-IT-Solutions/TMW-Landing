@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DISCORD_LINK, GOOGLE_SHEET_URL } from "../constants";
+
+// ─── Session-level dedup key ───
+// Prevents the same browser tab/session from POSTing to the Google Sheet
+// more than once, even if the user reopens the modal multiple times.
+const STORAGE_KEY = "tmw_form_submitted";
 
 const WhatsAppModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +15,23 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // ─── Check if this session already submitted ───
+  const alreadySubmitted = () => {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY) === "true";
+    } catch {
+      return false; // sessionStorage blocked (private mode, etc.)
+    }
+  };
+
+  const markSubmitted = () => {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, "true");
+    } catch {
+      // silent — dedup is best-effort
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -18,9 +40,29 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     }));
   };
 
+  // ─── Redirect helper (shared by Submit & Skip) ───
+  const redirectToDiscord = useCallback(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "discord_redirect_click" });
+    // Small delay lets GTM capture the event before navigation
+    setTimeout(() => {
+      window.location.href = DISCORD_LINK;
+    }, 100);
+  }, []);
+
+  // ─── Submit handler — guarded against duplicates ───
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
+
+    // Block if already in-flight OR already submitted this session
+    if (isSubmitting || alreadySubmitted()) {
+      // If they already submitted, just redirect — don't burn another API call
+      if (alreadySubmitted()) {
+        onClose();
+        redirectToDiscord();
+      }
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -29,7 +71,7 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     window.dataLayer.push({ event: "whatsapp_form_submit" });
 
     try {
-      // 2. Fetch POST to GOOGLE_SHEET_URL
+      // 2. Single POST to Google Sheet — this is the ONLY fetch() in the entire app
       await fetch(GOOGLE_SHEET_URL, {
         method: "POST",
         mode: "no-cors", // Google Apps Script redirects usually cause CORS, no-cors ensures execution succeeds without CORS error blocking code
@@ -38,37 +80,40 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
         },
         body: JSON.stringify(formData),
       });
+
+      // 3. Mark as submitted so reopening the modal won't fire again
+      markSubmitted();
     } catch (error) {
       console.error("Error submitting form:", error);
-    } finally {
-      // 3. Immediately after fetch completes (or fails), trigger discord_redirect_click GTM event and redirect with a slight delay
-      window.dataLayer.push({ event: "discord_redirect_click" });
-      setIsSubmitting(false);
-      onClose();
-
-      setTimeout(() => {
-        window.location.href = DISCORD_LINK;
-      }, 100);
+      // Even on error, mark submitted to avoid retry-spam burning quota.
+      // The data was likely received (no-cors responses are opaque).
+      markSubmitted();
     }
+
+    // 4. Close modal and redirect — keep isSubmitting=true to prevent
+    //    any further clicks during the redirect window.
+    onClose();
+    redirectToDiscord();
+    // NOTE: We intentionally do NOT call setIsSubmitting(false) here.
+    // The page is about to navigate away. Resetting it would briefly
+    // re-enable the button and open a race-condition window.
   };
 
+  // ─── Skip handler — no fetch(), just GTM + redirect ───
   const handleSkip = () => {
+    if (isSubmitting) return; // Don't allow skip while submit is in-flight
+
     // 1. Trigger skip_whatsapp_click GTM event
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "skip_whatsapp_click" });
 
-    // 2. Trigger discord_redirect_click GTM event
-    window.dataLayer.push({ event: "discord_redirect_click" });
-
     onClose();
 
-    // 3. Redirect to DISCORD_LINK after 100ms to allow GTM to capture the events
-    setTimeout(() => {
-      window.location.href = DISCORD_LINK;
-    }, 100);
+    // 2. Redirect — skip does NOT fire fetch(), so no quota impact
+    redirectToDiscord();
   };
 
-        return (
+  return (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -129,10 +174,11 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
                   type="text"
                   name="name"
                   required
+                  disabled={isSubmitting}
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="bg-white/5 border border-white/10 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 text-white rounded-xl px-4 py-3 outline-none transition-all duration-200 placeholder-gray-500 text-sm"
+                  className="bg-white/5 border border-white/10 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 text-white rounded-xl px-4 py-3 outline-none transition-all duration-200 placeholder-gray-500 text-sm disabled:opacity-50"
                 />
               </div>
 
@@ -145,10 +191,11 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
                   type="tel"
                   name="whatsappNumber"
                   required
+                  disabled={isSubmitting}
                   placeholder="e.g. +1 234 567 8900"
                   value={formData.whatsappNumber}
                   onChange={handleChange}
-                  className="bg-white/5 border border-white/10 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 text-white rounded-xl px-4 py-3 outline-none transition-all duration-200 placeholder-gray-500 text-sm"
+                  className="bg-white/5 border border-white/10 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 text-white rounded-xl px-4 py-3 outline-none transition-all duration-200 placeholder-gray-500 text-sm disabled:opacity-50"
                 />
               </div>
 
@@ -161,7 +208,8 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
                   name="tradingLevel"
                   value={formData.tradingLevel}
                   onChange={handleChange}
-                  className="bg-[#0b1528] border border-white/10 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 text-white rounded-xl px-4 py-3 outline-none transition-all duration-200 text-sm cursor-pointer appearance-none"
+                  disabled={isSubmitting}
+                  className="bg-[#0b1528] border border-white/10 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 text-white rounded-xl px-4 py-3 outline-none transition-all duration-200 text-sm cursor-pointer appearance-none disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{
                     backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
                     backgroundPosition: "right 1rem center",
@@ -182,10 +230,13 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-emerald text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 text-base shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 disabled:opacity-55 transition-all duration-200"
+                  className="w-full btn-emerald text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 text-base shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                   {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>Saving...</span>
+                    </>
                   ) : (
                     "Submit & Join Discord"
                   )}
@@ -196,7 +247,7 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
                   type="button"
                   onClick={handleSkip}
                   disabled={isSubmitting}
-                  className="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 hover:text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm"
+                  className="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 hover:text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Skip and Join Discord
                 </button>
