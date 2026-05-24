@@ -2,11 +2,6 @@ import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DISCORD_LINK, API_BASE_URL } from "../constants";
 
-// ─── Session-level dedup key ───
-// Prevents the same browser tab/session from POSTing to the Google Sheet
-// more than once, even if the user reopens the modal multiple times.
-const STORAGE_KEY = "tmw_form_submitted";
-
 const WhatsAppModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -14,23 +9,6 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     tradingLevel: "Beginner",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // ─── Check if this session already submitted ───
-  const alreadySubmitted = () => {
-    try {
-      return sessionStorage.getItem(STORAGE_KEY) === "true";
-    } catch {
-      return false; // sessionStorage blocked (private mode, etc.)
-    }
-  };
-
-  const markSubmitted = () => {
-    try {
-      sessionStorage.setItem(STORAGE_KEY, "true");
-    } catch {
-      // silent — dedup is best-effort
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,54 +28,40 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
     }, 100);
   }, []);
 
-  // ─── Submit handler — guarded against duplicates ───
+  // ─── Submit handler ───
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Block if already in-flight OR already submitted this session
-    if (isSubmitting || alreadySubmitted()) {
-      // If they already submitted, just redirect — don't burn another API call
-      if (alreadySubmitted()) {
-        onClose();
-        redirectToDiscord();
-      }
-      return;
-    }
+    // Block only if a request is already in-flight (prevents double-click)
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
 
-    // 1. Trigger whatsapp_form_submit GTM event right away
+    // 1. Trigger GTM event
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "whatsapp_form_submit" });
 
     try {
-      // 2. POST to our own Express server — which saves to MongoDB first,
-      //    then forwards to Google Sheets. We now own the endpoint so
-      //    proper CORS applies (no more no-cors opacity).
+      // 2. POST to Express server → Firebase Firestore + Google Sheets
       await fetch(`${API_BASE_URL}/api/submit-lead`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      // 3. Mark as submitted so reopening the modal won't fire again
-      markSubmitted();
+      // 3. Reset form fields so the form is clean if opened again
+      setFormData({ name: "", whatsappNumber: "", tradingLevel: "Beginner" });
+
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Even on error, mark submitted to avoid retry-spam burning quota.
-      // The data was likely received (no-cors responses are opaque).
-      markSubmitted();
+    } finally {
+      // 4. Always unlock the button — allows re-submission if user returns
+      setIsSubmitting(false);
     }
 
-    // 4. Close modal and redirect — keep isSubmitting=true to prevent
-    //    any further clicks during the redirect window.
+    // 5. Close modal and redirect to Discord
     onClose();
     redirectToDiscord();
-    // NOTE: We intentionally do NOT call setIsSubmitting(false) here.
-    // The page is about to navigate away. Resetting it would briefly
-    // re-enable the button and open a race-condition window.
   };
 
   // ─── Skip handler — no fetch(), just GTM + redirect ───
