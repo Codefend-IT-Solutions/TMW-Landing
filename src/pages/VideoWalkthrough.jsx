@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-
 const VideoWalkthrough = () => {
-  const videoUrl = "https://hhwwmxnscvrasxxmawtg.supabase.co/storage/v1/object/public/tmw-videos/discord1%20joinning_Final.mp4";
+  // We replaced the heavy Supabase storage .mp4 link with the highly optimized YouTube live embed string
+  const youtubeEmbedUrl = "https://www.youtube.com/embed/Et4IROoPIgg?rel=0&playsinline=1&modestbranding=1";
 
   return (
     <section className="w-full max-w-5xl mx-auto px-4 mb-20">
@@ -30,13 +30,13 @@ const VideoWalkthrough = () => {
           {/* Emerald ambient glow on hover */}
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
 
-          {/* Google Drive Video Embed */}
+          {/* Optimized YouTube Video Embed with WebKit Fixes */}
           <iframe
             className="absolute inset-0 w-full h-full border-0 z-0"
-            src={videoUrl}
-            allow="fullscreen; autoplay; encrypted-media"
+            src={youtubeEmbedUrl}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            title="Discord Walkthrough Video"
+            title="How to Join Our Free Trading Community"
           />
         </div>
       </motion.div>
