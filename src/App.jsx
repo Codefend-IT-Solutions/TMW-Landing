@@ -5,9 +5,9 @@ import VideoWalkthrough from "./pages/VideoWalkthrough";
 import ContextSection from "./pages/ContextSection";
 import MentorSection from "./pages/MentorSection";
 import Testimonials from "./pages/Testimonials";
-import CourseRoadmap from "./pages/CourseRoadmap";
+// import CourseRoadmap from "./pages/CourseRoadmap";
 import ComparisonSection from "./pages/ComparisonSection";
-import FinalCTA from "./pages/FinalCTA";
+// import FinalCTA from "./pages/FinalCTA";
 import WhatsAppModal from "./components/WhatsAppModal";
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
         <ContextSection />
         <MentorSection />
         <Testimonials />
-        <CourseRoadmap onJoinClick={handleOpenModal} />
+        {/* <CourseRoadmap onJoinClick={handleOpenModal} /> */}
         <ComparisonSection />
-        <FinalCTA onJoinClick={handleOpenModal} />
+        {/* <FinalCTA onJoinClick={handleOpenModal} /> */}
       </main>
 
       {/* WhatsApp Modal Popup Flow */}
