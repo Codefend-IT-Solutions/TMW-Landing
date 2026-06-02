@@ -4,5 +4,13 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  assetsInclude: ['**/*.mp4'],
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/[name]-[hash]-v2.js`,
+        chunkFileNames: `assets/[chunk]-[hash]-v2.js`,
+        assetFileNames: `assets/[name]-[hash]-v2.[ext]`,
+      },
+    },
+  },
 })
