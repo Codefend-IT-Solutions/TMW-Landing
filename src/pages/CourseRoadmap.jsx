@@ -87,7 +87,13 @@ const CourseRoadmap = ({ onJoinClick }) => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
       
       {/* Background glow */}
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] pointer-events-none" />
+      <div
+        className="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto">
         {/* Label */}
@@ -145,7 +151,7 @@ const CourseRoadmap = ({ onJoinClick }) => {
           <div className="sticky top-32">
             <div className="relative group">
               {/* Decorative frame */}
-              <div className="absolute -inset-1 bg-gradient-to-b from-emerald-500/20 to-transparent rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000" />
+              <div className="absolute -inset-1 bg-gradient-to-b from-emerald-500/20 to-transparent rounded-[2.5rem] opacity-25 group-hover:opacity-50 transition duration-1000" />
               
               <div className="relative glass rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
                 <div className="p-4 bg-white/5 border-b border-white/5 flex items-center justify-between">
@@ -157,9 +163,13 @@ const CourseRoadmap = ({ onJoinClick }) => {
                   <span className="text-[10px] text-gray-500 font-medium tracking-widest uppercase">Discord Classroom</span>
                 </div>
                 
-                <img 
-                  src={learningPathImg} 
-                  alt="Discord Learning Path" 
+                <img
+                  src={learningPathImg}
+                  alt="Discord Learning Path"
+                  loading="lazy"
+                  decoding="async"
+                  width="1080"
+                  height="1080"
                   className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                 />
               </div>

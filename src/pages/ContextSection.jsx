@@ -59,13 +59,19 @@ Think of it like an online trading classroom. After joining, you will see the Fr
         {/* Main card */}
         <div className="glass rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden">
           {/* Decorative corner glow */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-emerald-500 opacity-5 blur-3xl pointer-events-none" />
+          <div
+            className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+            }}
+          />
           
           <div className="flex flex-col md:flex-row gap-8 items-center">
             {/* Discord icon display */}
             <div className="flex-shrink-0">
               <div className="w-24 h-24 rounded-3xl bg-[#5865F2]/20 border border-[#5865F2]/30 flex items-center justify-center">
-              <img src={DiscordIcon} alt="discord icon" className="w-20 h-20" />
+              <img src={DiscordIcon} alt="discord icon" loading="lazy" decoding="async" width="80" height="80" className="w-20 h-20" />
               </div>
             </div>
 

@@ -88,7 +88,7 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-[#020617]/80 backdrop-blur-md cursor-pointer"
+            className="absolute inset-0 bg-[#020617]/90 cursor-pointer"
           />
 
           {/* Modal Container */}
@@ -97,11 +97,23 @@ const WhatsAppModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#0b1528]/95 border border-white/10 p-6 md:p-8 text-white shadow-2xl shadow-emerald-500/5 backdrop-blur-2xl z-10"
+            className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#0b1528] border border-white/10 p-6 md:p-8 text-white shadow-2xl shadow-emerald-500/5 z-10"
           >
             {/* Glowing top effect */}
-            <div className="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
+            <div
+              className="absolute -top-12 -left-12 w-32 h-32 rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%)",
+              }}
+            />
+            <div
+              className="absolute -bottom-12 -right-12 w-32 h-32 rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%)",
+              }}
+            />
 
             {/* Header / Icon */}
             <div className="flex items-center gap-3.5 mb-6">

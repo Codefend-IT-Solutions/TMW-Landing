@@ -7,7 +7,13 @@ const MentorSection = () => {
     <section className="py-24 px-4 relative overflow-hidden bg-[#030712]">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div
+        className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -27,6 +33,10 @@ const MentorSection = () => {
               <img
                 src={instructorImg}
                 alt="Mentor"
+                loading="lazy"
+                decoding="async"
+                width="1600"
+                height="1066"
                 className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-40" />
@@ -91,6 +101,10 @@ const MentorSection = () => {
                     <img
                       src={`https://i.pravatar.cc/100?img=${i + 10}`}
                       alt="Student"
+                      loading="lazy"
+                      decoding="async"
+                      width="40"
+                      height="40"
                     />
                   </div>
                 ))}

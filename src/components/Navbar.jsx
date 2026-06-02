@@ -38,7 +38,7 @@ const Navbar = ({ onJoinClick }) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       {/* Main bar */}
-      <div className="max-w-6xl mx-auto glass backdrop-blur-xl rounded-2xl px-6 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto glass-nav rounded-2xl px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <div
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -47,6 +47,8 @@ const Navbar = ({ onJoinClick }) => {
           <img
             src={Logo}
             alt="Logo"
+            width="40"
+            height="40"
             className="w-10 h-10 rounded-lg flex items-center justify-center glow-emerald-sm flex-shrink-0"
           />
           <span className="font-display font-bold text-lg tracking-tight">
@@ -130,7 +132,7 @@ const Navbar = ({ onJoinClick }) => {
       {/* Mobile dropdown menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden max-w-6xl mx-auto mt-2 glass backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`md:hidden max-w-6xl mx-auto mt-2 glass-nav rounded-2xl overflow-hidden transition-all duration-300 ease-in-out ${
           menuOpen
             ? "max-h-96 opacity-100"
             : "max-h-0 opacity-0 pointer-events-none"

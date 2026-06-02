@@ -22,18 +22,25 @@
 }
 
 @layer utilities {
+  /* NOTE: no backdrop-filter here — iOS Safari composites every
+     backdrop-blur layer on each scroll frame, which causes severe lag,
+     flickering and "disappearing content" on iPhones. On this near-black
+     background a translucent fill + border looks virtually identical. */
   .glass {
     background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .glass-emerald {
     background: rgba(16, 185, 129, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  /* Fixed navbar: opaque dark fill instead of backdrop blur so text
+     scrolling underneath never shows through. */
+  .glass-nav {
+    background: rgba(3, 7, 18, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .text-gradient {
@@ -108,18 +115,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #34d399;
 }
-
-/* Floating orb animations */
-@keyframes orbFloat1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 15px) scale(0.95); }
-}
-@keyframes orbFloat2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-25px, 20px) scale(0.95); }
-  66% { transform: translate(20px, -15px) scale(1.05); }
-}
-
-.orb-1 { animation: orbFloat1 12s ease-in-out infinite; }
-.orb-2 { animation: orbFloat2 15s ease-in-out infinite; }

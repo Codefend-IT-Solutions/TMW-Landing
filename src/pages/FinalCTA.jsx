@@ -10,7 +10,13 @@ const FinalCTA = ({ onJoinClick }) => {
 
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-emerald-500 opacity-[0.04] blur-3xl" />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%)",
+          }}
+        />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
       </div>
 

@@ -42,7 +42,13 @@ const ComparisonSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* FOR column */}
           <div className="glass rounded-3xl p-6 sm:p-8 relative overflow-hidden">
-            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-emerald-500 opacity-5 blur-3xl pointer-events-none" />
+            <div
+              className="absolute -top-12 -right-12 w-40 h-40 rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+              }}
+            />
             
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center">
@@ -72,7 +78,13 @@ const ComparisonSection = () => {
 
           {/* NOT FOR column */}
           <div className="glass rounded-3xl p-6 sm:p-8 relative overflow-hidden border border-red-500/10">
-            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-red-500 opacity-5 blur-3xl pointer-events-none" />
+            <div
+              className="absolute -top-12 -right-12 w-40 h-40 rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(239,68,68,0.08) 0%, transparent 70%)",
+              }}
+            />
             
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">

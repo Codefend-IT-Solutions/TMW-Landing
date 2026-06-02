@@ -60,7 +60,13 @@ const Testimonials = () => {
     >
       {/* Background decoration */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -136,11 +142,21 @@ const Testimonials = () => {
 
                 {/* Profile Image with Ring */}
                 <div className="relative mb-8">
-                  <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div
+                    className="absolute -inset-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(16,185,129,0.3) 0%, transparent 70%)",
+                    }}
+                  />
                   <div className="relative w-40 h-40 rounded-full p-1 border-2 border-dashed border-emerald-500/30 group-hover:border-emerald-500 transition-colors duration-500">
                     <img
                       src={t.img}
                       alt={t.name}
+                      loading="lazy"
+                      decoding="async"
+                      width="160"
+                      height="160"
                       className="w-full h-full rounded-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
@@ -173,7 +189,7 @@ const Testimonials = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedId(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/85"
             />
 
             {/* Modal Content */}
@@ -184,7 +200,13 @@ const Testimonials = () => {
               className="relative w-full max-w-xl bg-[#0c0f1a] border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl overflow-hidden"
             >
               {/* Top glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-emerald-500/10 blur-[100px] pointer-events-none" />
+              <div
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at top, rgba(16,185,129,0.15) 0%, transparent 70%)",
+                }}
+              />
 
               <div className="relative z-10 flex flex-col items-center text-center">
                 <button
