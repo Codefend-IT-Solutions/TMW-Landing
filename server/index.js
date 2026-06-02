@@ -133,6 +133,7 @@ app.post('/api/submit-lead', async (req, res) => {
 // ─── Start server ──────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
+  console.log('--------------------------------');
   console.log(`[Server] Express API running on http://localhost:${PORT}`);
   console.log(`[Server] CORS: accepting requests from → ${allowedOrigin}`);
   console.log(`[Server] Pipeline → Firebase Firestore + Google Sheets webhook`);
